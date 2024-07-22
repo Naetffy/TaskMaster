@@ -1,3 +1,4 @@
+
 class User {
     constructor(name, email, calendary) {
         this.name = name;
@@ -93,11 +94,13 @@ RECO.addGrade(40, 0.3);
 RECO.addGrade(40, 0.3);
 
 
-console.log(`Final grade in Math: ${math.getFinalGrade()}`); // Final grade in Math: 88
-console.log(`Final grade in Science: ${science.getFinalGrade()}`); // Final grade in Science: 77.5
+console.log(`Final grade in Math: ${RECO.getFinalGrade()}`); // Final grade in Math: 88
+console.log(`Final grade in Science: ${IAIA.getFinalGrade()}`); // Final grade in Science: 77.5
 
 const RECOHomework = new Task('Homework 1', RECO);
 const IAIAHomework = new Task('Homework 1', IAIA);
 
 userCalendar.addTask('2024-07-21', RECOHomework);
 userCalendar.addTask('2024-07-22', IAIAHomework);
+
+window.user = user;
