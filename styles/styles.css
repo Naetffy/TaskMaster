@@ -63,17 +63,28 @@ input::placeholder,textarea::placeholder {
     height: 120px;
 
 }
-header{
+#navbar-placeholder{
     background: transparent;
     color: white;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+#navbar-placeholder nav{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
 }
 #nav-container{
     list-style: none;
     padding: 0;
     display:flex;
     justify-content: center;
-    margin-top: 1.5rem;
-    margin-left: 2rem;
+    margin-top: 1.7rem;
 }
 #nav-container a {
     color: white;
@@ -82,7 +93,7 @@ header{
     margin: 0 1.5rem 0 0;
 }
 #nav-container li{
-    margin: 0 1rem;
+    margin: 0 2rem;
 }
 .logo{
     height: 60px;
@@ -94,9 +105,25 @@ header{
 #logo-container{
     display: flex;
     align-items: center;
+    position: absolute;
+    margin-right: auto;
+    margin-left: 1rem;
+    margin-top: 0.5rem;
 }
-#header-container{
+#nav-container a:hover{
+    color: #65D6DD;
+}
+#user-container{
     display: flex;
     align-items: center;
+    font-size: 1rem;
+    position: relative;
+    margin-left: auto;
+    margin-right: 1rem;
+}
+#user-container span{
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
 }
 
