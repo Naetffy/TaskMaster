@@ -1,3 +1,4 @@
+
 class User {
     constructor(name, email, calendary) {
         this.name = name;
@@ -76,3 +77,30 @@ class Status {
     static IN_PROGRESS = 1;
     static COMPLETED = 2;
 }
+
+// Crear instancias de las clases
+const userCalendar = new Calendary();
+const user = new User('John Doe', 'johndoe@example.com', userCalendar);
+
+// Añadir materias
+const RECO = new Subject('Redes computacionales');
+const IAIA = new Subject('Intro. a la inteligencia artificial');
+
+user.addSubject(RECO);
+user.addSubject(IAIA);
+
+// Añadir calificaciones a las materias
+RECO.addGrade(40, 0.3);
+RECO.addGrade(40, 0.3);
+
+
+console.log(`Final grade in Math: ${RECO.getFinalGrade()}`); // Final grade in Math: 88
+console.log(`Final grade in Science: ${IAIA.getFinalGrade()}`); // Final grade in Science: 77.5
+
+const RECOHomework = new Task('Homework 1', RECO);
+const IAIAHomework = new Task('Homework 1', IAIA);
+
+userCalendar.addTask('2024-07-21', RECOHomework);
+userCalendar.addTask('2024-07-22', IAIAHomework);
+
+window.user = user;
