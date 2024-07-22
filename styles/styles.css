@@ -52,6 +52,9 @@ input::placeholder,textarea::placeholder {
 .h-5{
     height: 30px;
 }
+.h-10{
+    height: 60px;
+}
 .h-15{
     height: 90px;
 
@@ -60,3 +63,40 @@ input::placeholder,textarea::placeholder {
     height: 120px;
 
 }
+header{
+    background: transparent;
+    color: white;
+}
+#nav-container{
+    list-style: none;
+    padding: 0;
+    display:flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+    margin-left: 2rem;
+}
+#nav-container a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    margin: 0 1.5rem 0 0;
+}
+#nav-container li{
+    margin: 0 1rem;
+}
+.logo{
+    height: 60px;
+}
+.app-name{
+    margin: 0 1rem;
+    font-size: 1.5rem;
+}
+#logo-container{
+    display: flex;
+    align-items: center;
+}
+#header-container{
+    display: flex;
+    align-items: center;
+}
+
