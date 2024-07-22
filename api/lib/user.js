@@ -10,6 +10,19 @@ class User {
     addSubject(subject) {
         this.subjects.push(subject);
     }
+
+    static fromJSON(json) {
+        const data = JSON.parse(json);
+        const user = new User(data.name, data.email, new Calendary());
+        user.subjects = data.subjects.map(subject => {
+            const subj = new Subject(subject.name);
+            subj.grades = subject.grades;
+            subj.finalGrade = subject.finalGrade;
+            return subj;
+        });
+        user.calendary.tasks = data.calendary.tasks;
+        return user;
+    }
 }
 
 class Calendary {
@@ -103,4 +116,6 @@ const IAIAHomework = new Task('Homework 1', IAIA);
 userCalendar.addTask('2024-07-21', RECOHomework);
 userCalendar.addTask('2024-07-22', IAIAHomework);
 
-window.user = user;
+sessionStorage.setItem('user', JSON.stringify(user));
+
+export { User };
