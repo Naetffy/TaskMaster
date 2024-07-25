@@ -13,9 +13,9 @@
 	<div id="navbar-placeholder"></div>
 	<div class="w-40">
 		<h2>Title</h2>
-		<input type="text" id="title" class="w-100 h-5" placeholder="Enter the task title" />
+		<input type="text" id="task-name" class="w-100 h-5" placeholder="Enter the task title" />
 		<h2>Description</h2>
-		<textarea type="text" id="description" class="w-100 h-15"
+		<textarea type="text" id="task-description" class="w-100 h-15"
 			placeholder="Enter the task description, no more than 40 characters"></textarea>
 		<div class="flex h-10" style="margin-top: 10px;">
 			<img src="../images/calendary.png" id="add-task" />
@@ -23,10 +23,14 @@
 				<h3>Due Date</h3>
 				<p style="color: #65D6DD;">07/22/2024</p>
 			</div>
-			<button class="addButton"><b>Add</b></button>
+			<button class="addButton" onclick="addTask()"><b>Add</b></button>
 		</div>
 	</div>
+	<div id="tasks-container">
+
+	</div>
 	<script src="../scripts/script.js"></script>
+	<script type="module" src="../scripts/task.js"></script>
 </body>
 
 </html>

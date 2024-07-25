@@ -6,22 +6,31 @@ class User {
         this.subjects = [];
         this.calendary = calendary;
     }
+    static fromJson(json) {
+        let calendary = Calendary.fromJson(json.calendary);
+        const user = new User(json.name, json.email, calendary);
+        user.subjects = [];
+        for (let i = 0; i < json.subjects.length; i++) {
+            user.subjects.push(Subject.fromJson(json.subjects[i]));
+        }
+        return user;
+    
+    }
 
     addSubject(subject) {
         this.subjects.push(subject);
     }
 
-    static fromJSON(json) {
-        const data = JSON.parse(json);
-        const user = new User(data.name, data.email, new Calendary());
-        user.subjects = data.subjects.map(subject => {
-            const subj = new Subject(subject.name);
-            subj.grades = subject.grades;
-            subj.finalGrade = subject.finalGrade;
-            return subj;
-        });
-        user.calendary.tasks = data.calendary.tasks;
-        return user;
+    getSubjects() {
+        return this.subjects;
+    }
+
+    addTask(date, task) {
+        this.calendary.addTask(date, task);
+    }
+
+    getAllTasks(){
+        return this.calendary.tasks;
     }
 }
 
@@ -29,6 +38,16 @@ class Calendary {
     constructor(user) {
         this.user = user;
         this.tasks = {};
+    }
+
+    static fromJson(json) {
+        let tasks = {};
+        for (let date in json.tasks) {
+            tasks[date] = json.tasks[date].map(task => Task.fromJson(task));
+        }
+        const calendary = new Calendary(json.user);
+        calendary.tasks = tasks;
+        return calendary;
     }
 
     addTask(date, task) {
@@ -44,6 +63,13 @@ class Subject {
         this.name = name;
         this.grades = [];
         this.finalGrade = 0;
+    }
+
+    static fromJson(json) {
+        const subject = new Subject(json.name);
+        subject.grades = json.grades;
+        subject.finalGrade = json.finalGrade;
+        return subject;
     }
 
     addGrade(grade, percentage) {
@@ -65,11 +91,20 @@ class Subject {
 }
 
 class Task {
-    constructor(name, subject) {
+    constructor(name, description ,subject) {
         this.name = name;
+        this.description = description;
         this.subject = subject;
         this.status = Status.PENDING;
         this.grade = null;
+    }
+
+    static fromJson(json) {
+        let subject = Subject.fromJson(json.subject);
+        const task = new Task(json.name, json.description, subject);
+        task.status = json.status;
+        task.grade = json.grade;
+        return task;
     }
 
     start() {
@@ -89,6 +124,20 @@ class Status {
     static PENDING = 0;
     static IN_PROGRESS = 1;
     static COMPLETED = 2;
+
+    static toString(status) {
+        switch (status) {
+            case Status.PENDING:
+                return 'PENDING';
+            case Status.IN_PROGRESS:
+                return 'IN_PROGRESS';
+            case Status.COMPLETED:
+                return 'COMPLETED';
+        }
+    }
+    static values() {
+        return ['PENDING', 'IN_PROGRESS', 'COMPLETED'];
+    }
 }
 
 // Crear instancias de las clases
@@ -106,16 +155,14 @@ user.addSubject(IAIA);
 RECO.addGrade(40, 0.3);
 RECO.addGrade(40, 0.3);
 
-
-console.log(`Final grade in Math: ${RECO.getFinalGrade()}`); // Final grade in Math: 88
-console.log(`Final grade in Science: ${IAIA.getFinalGrade()}`); // Final grade in Science: 77.5
-
-const RECOHomework = new Task('Homework 1', RECO);
-const IAIAHomework = new Task('Homework 1', IAIA);
+const RECOHomework = new Task('Homework1 RECO', "Realizar maquina virtual implementando el una base de datos" , RECO);
+const IAIAHomework = new Task('Homework1 IAIA', "Entender una red neuronal no convulcional",IAIA);
+const IAIAHomework2 = new Task('Homework2 IAIA', "Entender una red neuronal convulcional",IAIA);
 
 userCalendar.addTask('2024-07-21', RECOHomework);
 userCalendar.addTask('2024-07-22', IAIAHomework);
+userCalendar.addTask('2024-07-23', IAIAHomework2);
 
-sessionStorage.setItem('user', JSON.stringify(user));
+if (!sessionStorage.getItem('user')) sessionStorage.setItem('user', JSON.stringify(user));
 
-export { User };
+export { User, Calendary, Subject, Task, Status };
