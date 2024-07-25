@@ -1,12 +1,22 @@
 import {User, Status, Task} from '../api/lib/user.js';
+
+/*
+*Load user
+*/
+function loadUser(){
+    const userJson = sessionStorage.getItem('user');
+    const user = User.fromJson(JSON.parse(userJson));
+    return function(){
+        return user;
+    }
+}
+const user = loadUser()();
 /*
 *Load the page with the added tasks.
 */
 function loadTasks() {
-    const userJson = sessionStorage.getItem('user');
-    const user = User.fromJson(JSON.parse(userJson));
     let tasks = user.getAllTasks();
-    //console.log(tasks);
+    console.log(tasks);
     let tasksHtml = '';
     for (let date in tasks) {
         for (let i = 0; i < tasks[date].length; i++) {
@@ -39,14 +49,12 @@ function loadTasks() {
 }
 /*
 *Change the status of the tasks 
-*Attributes: taks date, index of the task, the new status
+*@param taksDate the dselected date of the task
+*@param taskIndex index of the task within the date key
+*@param newStatus the new status of the tasks
 */
 function changeTaskStatus(taskDate, taskIndex, newStatus) {
     console.log(`Task Date: ${taskDate}, Task Index: ${taskIndex}, New Status: ${newStatus}`);
-    
-    // Actualiza la tarea en tu modelo de datos y guarda el usuario actualizado en sessionStorage
-    const userJson = sessionStorage.getItem('user');
-    const user = User.fromJson(JSON.parse(userJson));
     user.getAllTasks()[taskDate][taskIndex].status = parseInt(newStatus);
     sessionStorage.setItem('user', JSON.stringify(user));
     // Vuelve a cargar las tareas para reflejar los cambios en el HTML
@@ -62,8 +70,6 @@ function addTask(){
         alert('Please fill all the fields');
         return;
     }
-    const userJson = sessionStorage.getItem('user');
-    const user = User.fromJson(JSON.parse(userJson));
     let date = dueDateText.textContent;
     let task = new Task(taskName, taskDescription, Status.PENDING, user.subjects[0]);
     user.addTask(date, task);
@@ -71,27 +77,26 @@ function addTask(){
     loadTasks();
 }
 /*Delete the selected task
-Atibuttes: task date, index of the task, button element 
+*@param taksDate the selected date of the task
+*@param slectedTask index of the task within the date key
+*@param button the button element of the selected task
 */
 function removeTask(taskDate,selectedTask,button){
-    const userJson = sessionStorage.getItem('user');
-    const user = User.fromJson(JSON.parse(userJson));
     user.deleteTask(taskDate,selectedTask);
-    sessionStorage.setItem('user', JSON.stringify(user));
     const elementToRemove = button.parentElement.parentElement;
     elementToRemove.remove();
+    sessionStorage.setItem('user', JSON.stringify(user));
     loadTasks();
 }
 /*Modify the selected task
-Atibuttes: task date, index of the task, button element
+*@param date the selected date of the task
+*@param task index of the task within the date key
+*@param button the button element of the selected task
 */
 function editTask(date,task,button){
     const item = button.parentElement.parentElement;
     const title = item.querySelector('.task-header').querySelector('h4').textContent;
-    const paragraph = item.querySelectorAll('p');
-    console.log(paragraph);
-    const description = paragraph[0].textContent;
-    const dateTask = paragraph[2].textContent;
+    const description = item.querySelector('p').textContent;
     const inputTitle = document.querySelector('#task-name');
     const inputDescription = document.querySelector('#task-description');
     const inputDate = document.querySelector(".h-10").querySelector('div').querySelector('p');
