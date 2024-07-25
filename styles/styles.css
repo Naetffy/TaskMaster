@@ -71,7 +71,8 @@ input::placeholder,textarea::placeholder {
     color: white;
     display: flex;
     align-items: center;
-    width: 100%;
+    width: 90%;
+    margin: auto;
     position: relative;
 }
 #navbar-placeholder nav{
@@ -176,6 +177,7 @@ input::placeholder,textarea::placeholder {
     border-radius: 8px;
     margin-top: 2rem;
     height: 100%;
+    box-sizing: border-box;
 }
 .services {
     display: flex;

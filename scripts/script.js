@@ -2,7 +2,7 @@
 function addUserName(){
     const userJson = sessionStorage.getItem('user');
     const user = JSON.parse(userJson);
-    const newSpan = `<span>Welcome back, ${user.name}</span>`;
+    const newSpan = `<span>Welcome, ${user.name}</span>`;
     $("#user-container").prepend(newSpan);
 }
 
