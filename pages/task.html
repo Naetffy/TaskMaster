@@ -7,6 +7,8 @@
 	<link rel="stylesheet" href="../styles/styles.css" />
 	<script type="text/javascript" src="../jquery-3.0.0.min.js"></script>
 	<link rel="stylesheet" href="../styles/task.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 	<title>Tasks</title>
 
 <body>
@@ -18,10 +20,10 @@
 		<textarea type="text" id="task-description" class="w-100 h-15"
 			placeholder="Enter the task description, no more than 40 characters"></textarea>
 		<div class="flex h-10" style="margin-top: 10px;">
-			<img src="../images/calendary.png" id="add-task" />
+			<img src="../images/calendary.png" id="calendarIcon" />
 			<div style="display: block; margin-left: 10px;">
 				<h3>Due Date</h3>
-				<p style="color: #65D6DD;">07/22/2024</p>
+				<p id="dueDateText" style="color: #65D6DD;">07/22/2024</p>
 			</div>
 			<button class="addButton" onclick="addTask()"><b>Add</b></button>
 		</div>
