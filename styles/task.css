@@ -54,6 +54,7 @@ h3{
 }
 .task-header{
     display: flex;
+    position:relative;
 }
 .circle{
     border-radius: 50%;
@@ -74,4 +75,18 @@ h3{
 }
 .task h4, .task p{
     margin: 0.2em 0.5em;
+}
+.task-icon{
+    top: 5px; 
+    cursor: pointer;
+}
+.close-button{
+    position: absolute;
+    right: 5px;
+    font-size: 12px;
+    background-color: #494949;
+    color:#BEB8B8;
+}
+.edit-icon{
+    height: 20px;
 }

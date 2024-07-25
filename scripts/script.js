@@ -16,3 +16,25 @@ $(document).ready(function() {
         })
         .catch(error => console.error('Error loading the navbar:', error));
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const calendarIcon = document.getElementById('calendarIcon');
+    const dueDateText = document.getElementById('dueDateText');
+
+    const dateInput = document.createElement('input');
+    dateInput.type = 'text';
+    dateInput.style.display = 'none';
+    document.body.appendChild(dateInput);
+
+    const datePicker = flatpickr(dateInput, {
+        dateFormat: "m/d/Y",
+        onChange: function(selectedDates, dateStr, instance) {
+            dueDateText.textContent = dateStr;
+        },
+        clickOpens: false 
+    });
+
+    calendarIcon.addEventListener('click', function() {
+        datePicker.open();
+    });
+});

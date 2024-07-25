@@ -32,6 +32,10 @@ class User {
     getAllTasks(){
         return this.calendary.tasks;
     }
+
+    deleteTask(date, task){
+        this.calendary.deleteTask(date,task);
+    }
 }
 
 class Calendary {
@@ -55,6 +59,12 @@ class Calendary {
             this.tasks[date] = [];
         }
         this.tasks[date].push(task);
+    }
+
+    deleteTask(date,index){
+        if(this.tasks[date]){
+            this.tasks[date].splice(index,1);
+        }
     }
 }
 
