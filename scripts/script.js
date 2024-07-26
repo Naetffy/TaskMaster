@@ -7,34 +7,25 @@ function addUserName(){
 }
 
 
-$(document).ready(function() {
+document.addEventListener("DOMContentLoaded", function() {
     fetch('../components/navbar.html')
         .then(response => response.text())
         .then(data => {
             document.getElementById('navbar-placeholder').innerHTML = data;
             addUserName();
+            highlightActiveNav();
         })
         .catch(error => console.error('Error loading the navbar:', error));
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const calendarIcon = document.getElementById('calendarIcon');
-    const dueDateText = document.getElementById('dueDateText');
-
-    const dateInput = document.createElement('input');
-    dateInput.type = 'text';
-    dateInput.style.display = 'none';
-    document.body.appendChild(dateInput);
-
-    const datePicker = flatpickr(dateInput, {
-        dateFormat: "m/d/Y",
-        onChange: function(selectedDates, dateStr, instance) {
-            dueDateText.textContent = dateStr;
-        },
-        clickOpens: false 
+function highlightActiveNav() {
+    const path = window.location.pathname;
+    const navLinks = document.querySelectorAll('#nav-container li a');
+    
+    navLinks.forEach(link => {
+        if (link.getAttribute('href') === `..${path}`) {
+            link.classList.add('active');
+        }
     });
+}
 
-    calendarIcon.addEventListener('click', function() {
-        datePicker.open();
-    });
-});

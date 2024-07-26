@@ -6,6 +6,13 @@ body{
     padding: 0;
     height: 100%;
 }
+
+.active {
+    font-weight: bold;
+    color: #007bff;
+    border-bottom: 1px solid #65D6DD;
+}
+
 button{
     background-color: #65D6DD;
     color: white;
@@ -33,7 +40,17 @@ textarea{
 input::placeholder,textarea::placeholder {
     color: #c7c7c7; /* Color más oscuro para el placeholder */
 }
-
+.w-100{
+    width: 100%;
+}
+.w-95{
+    width: 95%;
+    margin: auto;
+}
+.w-70{
+    width: 70%;
+    margin: auto;
+}
 .w-60{
     width: 60%;
     margin: auto;
@@ -46,12 +63,14 @@ input::placeholder,textarea::placeholder {
     width: 40%;
     margin: auto;
 }
+.w-30{
+    width: 30%;
+    margin: auto;
+}
 .w-10{
     width: 10%;
 }
-.w-100{
-    width: 100%;
-}
+
 .h-5{
     height: 30px;
 }

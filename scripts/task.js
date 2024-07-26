@@ -16,7 +16,6 @@ const user = loadUser()();
 */
 function loadTasks() {
     let tasks = user.getAllTasks();
-    console.log(tasks);
     let tasksHtml = '';
     for (let date in tasks) {
         for (let i = 0; i < tasks[date].length; i++) {
@@ -54,7 +53,6 @@ function loadTasks() {
 *@param newStatus the new status of the tasks
 */
 function changeTaskStatus(taskDate, taskIndex, newStatus) {
-    console.log(`Task Date: ${taskDate}, Task Index: ${taskIndex}, New Status: ${newStatus}`);
     user.getAllTasks()[taskDate][taskIndex].status = parseInt(newStatus);
     sessionStorage.setItem('user', JSON.stringify(user));
     // Vuelve a cargar las tareas para reflejar los cambios en el HTML
@@ -68,6 +66,22 @@ function addTask(){
     let taskDescription = $("#task-description").val();
     if (!taskName || !taskDescription) {
         alert('Please fill all the fields');
+        return;
+    }
+    if(taskDescription.length > 40){
+        alert('The description is too long');
+        return;
+    }
+    let dueDateText = $('#dueDateText');
+    if (!dueDateText.text()) {
+        alert('Please select a due date');
+        return;
+    }
+    let currentDate = new Date();
+    let dueDate = new Date(dueDateText.textContent);
+    currentDate.setHours(0,0,0,0);
+    if(dueDate < currentDate){
+        alert('The due date must be greater than the current date');
         return;
     }
     let date = dueDateText.textContent;
@@ -112,4 +126,26 @@ window.removeTask = removeTask;
 window.editTask = editTask;
 $(document).ready(function() {
     loadTasks();
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const calendarIcon = document.getElementById('calendarIcon');
+    const dueDateText = document.getElementById('dueDateText');
+
+    const dateInput = document.createElement('input');
+    dateInput.type = 'text';
+    dateInput.style.display = 'none';
+    document.body.appendChild(dateInput);
+
+    const datePicker = flatpickr(dateInput, {
+        dateFormat: "m/d/Y",
+        onChange: function(selectedDates, dateStr, instance) {
+            dueDateText.textContent = dateStr;
+        },
+        clickOpens: false 
+    });
+
+    calendarIcon.addEventListener('click', function() {
+        datePicker.open();
+    });
 });
