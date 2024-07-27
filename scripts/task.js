@@ -4,7 +4,7 @@ import {User, Status, Task} from '../api/lib/user.js';
 *Load user
 */
 function loadUser(){
-    const userJson = sessionStorage.getItem('user');
+    const userJson = localStorage.getItem('user');
     const user = User.fromJson(JSON.parse(userJson));
     return function(){
         return user;
@@ -56,7 +56,7 @@ function loadTasks() {
 function changeTaskStatus(taskDate, taskIndex, newStatus) {
     console.log(`Task Date: ${taskDate}, Task Index: ${taskIndex}, New Status: ${newStatus}`);
     user.getAllTasks()[taskDate][taskIndex].status = parseInt(newStatus);
-    sessionStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('user', JSON.stringify(user));
     // Vuelve a cargar las tareas para reflejar los cambios en el HTML
     loadTasks();
 }
@@ -73,7 +73,7 @@ function addTask(){
     let date = dueDateText.textContent;
     let task = new Task(taskName, taskDescription, Status.PENDING, user.subjects[0]);
     user.addTask(date, task);
-    sessionStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('user', JSON.stringify(user));
     loadTasks();
 }
 /*Delete the selected task
@@ -85,7 +85,7 @@ function removeTask(taskDate,selectedTask,button){
     user.deleteTask(taskDate,selectedTask);
     const elementToRemove = button.parentElement.parentElement;
     elementToRemove.remove();
-    sessionStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('user', JSON.stringify(user));
     loadTasks();
 }
 /*Modify the selected task
@@ -112,4 +112,25 @@ window.removeTask = removeTask;
 window.editTask = editTask;
 $(document).ready(function() {
     loadTasks();
+});
+document.addEventListener('DOMContentLoaded', function() {
+    const calendarIcon = document.getElementById('calendarIcon');
+    const dueDateText = document.getElementById('dueDateText');
+
+    const dateInput = document.createElement('input');
+    dateInput.type = 'text';
+    dateInput.style.display = 'none';
+    document.body.appendChild(dateInput);
+
+    const datePicker = flatpickr(dateInput, {
+        dateFormat: "m/d/Y",
+        onChange: function(selectedDates, dateStr, instance) {
+            dueDateText.textContent = dateStr;
+        },
+        clickOpens: false 
+    });
+
+    calendarIcon.addEventListener('click', function() {
+        datePicker.open();
+    });
 });
