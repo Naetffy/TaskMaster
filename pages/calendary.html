@@ -6,19 +6,40 @@
 	<link rel="stylesheet" href="" />
 	<link rel="stylesheet" href="../styles/styles.css" />
 	<script type="text/javascript" src="../jquery-3.0.0.min.js"></script>
+	<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+	<script>
+
+		document.addEventListener('DOMContentLoaded', function() {
+		  var calendarEl = document.getElementById('calendar');
+		  var calendar = new FullCalendar.Calendar(calendarEl, {
+			initialView: 'dayGridMonth'
+		  });
+		  calendar.render();
+		});
+  
+	  </script>
 	<link rel="stylesheet" href="../styles/calendary.css">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 	<title>Calendary</title>
 
 <body>
 	<div id="navbar-placeholder"></div>
     <div class="w-95 div-calendary">
-        <div class="w-30">
-            <p>holas</p>
+        <div class="w-20 actual-day">
+            <div class="actual-day-header">
+				<div>
+					<h2>Tareas</h2>
+					<p id="actual-day"></p>
+				</div>
+				<img src="" alt="">
+			</div>
+			<div id="actual-task">
+				<ul id="task-list">
+				</ul>
+			</div>
         </div>
-        <div class="w-70 calendary">
-        </div>  
+        <div class="calendar" id="calendar">
+			
+        </div>
     </div>
 	<script src="../scripts/script.js"></script>
 	<script type="module" src="../scripts/calendary.js"></script>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="iso-utf-8" />
+	<link rel="stylesheet" href="../styles/subject.css" />
+	<link rel="stylesheet" href="../styles/styles.css" />
+	<script type="text/javascript" src="../jquery-3.0.0.min.js"></script>
+	<title>Subjects</title>
+
+<body>
+	<div id="navbar-placeholder"></div>
+	<div id="add-subject">
+        <h1>Add Subject</h1>
+        <input type="text" id="subject-name" placeholder="Enter the subject title"> 
+        <div class="label-container items">
+            <label>Grade</label>
+            <label>%</label>
+        </div>
+        <div id="subjects-container">
+            <div class="subject-container items">
+                <label><b>Grade 1</b></label>
+                <div class = "subject-information">
+                    <input type="text" class = "input-size">
+                    <input type="text" class = "input-size">
+                </div>
+            </div>
+            <div class="subject-container items">
+                <label><b>Grade 2</b></label>
+                <div class = "subject-information">
+                    <input type="text" class = "input-size">
+                    <input type="text" class = "input-size">
+                </div>
+            </div>
+            <div class="subject-container items">
+                <label><b>Grade 3</b></label>
+                <div class = "subject-information">
+                    <input type="text" class = "input-size">
+                    <input type="text" class = "input-size">
+                </div>
+            </div>
+        </div>
+        <button id="add-grade-button" onclick="addGrade()"><b>+ Add grade</b></button>
+        <button id="add-subject-button" onclick="addSubject()"><b>Add</b></button>    
+    </div>
+
+	
+	<script src="../scripts/script.js"></script>
+	<script type="module" src="../scripts/subject.js"></script>
+</body>
+
+</html>

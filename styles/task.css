@@ -1,3 +1,63 @@
+button{
+    background-color: #65D6DD;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input, textarea{
+    box-sizing: border-box;
+    background-color: black;
+    color: white;
+    border-radius: 4px;
+    border: 1px solid #65D6DD;
+}
+input{
+    padding-left: 5px;
+}
+textarea{
+    padding-top: 5px;
+    padding-left: 5px;
+    resize: none;
+}
+
+input::placeholder,textarea::placeholder {
+    color: #c7c7c7; /* Color más oscuro para el placeholder */
+}
+
+.w-60{
+    width: 60%;
+    margin: auto;
+}
+.w-50{
+    width: 50%;
+    margin: auto;
+}
+.w-40{
+    width: 40%;
+    margin: auto;
+}
+.w-10{
+    width: 10%;
+}
+.w-100{
+    width: 100%;
+}
+.h-5{
+    height: 30px;
+}
+.h-10{
+    height: 60px;
+}
+.h-15{
+    height: 90px;
+
+}
+.h-20{
+    height: 120px;
+
+}
 .flex{
     display: flex;
 }
