@@ -4,7 +4,7 @@ import {User, Status, Task} from '../api/lib/user.js';
 *Load user
 */
 function loadUser(){
-    const userJson = sessionStorage.getItem('user');
+    const userJson = localStorage.getItem('user');
     const user = User.fromJson(JSON.parse(userJson));
     return function(){
         return user;
@@ -54,7 +54,7 @@ function loadTasks() {
 */
 function changeTaskStatus(taskDate, taskIndex, newStatus) {
     user.getAllTasks()[taskDate][taskIndex].status = parseInt(newStatus);
-    sessionStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('user', JSON.stringify(user));
     // Vuelve a cargar las tareas para reflejar los cambios en el HTML
     loadTasks();
 }
@@ -86,7 +86,7 @@ function addTask(){
     };
     let task = new Task(taskName, taskDescription, Status.PENDING, user.subjects[0]);
     user.addTask(dueDateText.text(), task);
-    sessionStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('user', JSON.stringify(user));
     loadTasks();
 }
 /*Delete the selected task
@@ -98,7 +98,7 @@ function removeTask(taskDate,selectedTask,button){
     user.deleteTask(taskDate,selectedTask);
     const elementToRemove = button.parentElement.parentElement;
     elementToRemove.remove();
-    sessionStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('user', JSON.stringify(user));
     loadTasks();
 }
 /*Modify the selected task
@@ -126,7 +126,6 @@ window.editTask = editTask;
 $(document).ready(function() {
     loadTasks();
 });
-
 document.addEventListener('DOMContentLoaded', function() {
     const calendarIcon = document.getElementById('calendarIcon');
     const dueDateText = document.getElementById('dueDateText');

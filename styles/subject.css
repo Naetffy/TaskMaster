@@ -1,0 +1,77 @@
+#subject-name {
+        border: none;
+        border-bottom: 1px solid #65D6DD;
+        background: none;
+        outline: none;
+        width: 92%;
+        padding: 5px 0;
+        font-size: 16px;
+        color: white;
+}
+.items{
+    display: flex;
+    margin-top: 20px;
+}
+.subject-container {
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 8%;
+    margin-right: 20%;
+}
+
+#add-subject{
+    width: calc(30% + 30px);
+    flex-direction: column;
+    display: flex;
+    margin-top: 30px;
+    margin-left: 25px;
+    border-right: 5px dotted #5191ff;
+}
+.input-size{
+    width: 80px; 
+    height: 50px; 
+    box-sizing: border-box;
+    font-size: 14px; 
+    border-radius: 8px;
+}
+
+.label-container{
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20%;
+    margin-right: 21%;
+}
+.subject-information{
+    display: flex;
+    gap: 15%;
+}
+.subject-information input{
+    text-align: center;
+    border: 2px solid #65D6DD;
+}
+button{
+    border-radius: 8px;
+    cursor: pointer;
+    height: 35px;
+    margin-block: auto;
+    
+}
+#add-grade-button{
+    background-color: transparent;
+    border: 1px solid #65D6DD;
+    color: #65D6DD;
+    margin-left: auto; 
+    margin-right: 15%;
+    width: 95px;
+    margin-top: 20px;
+
+}
+#add-subject-button{
+    background-color: #65D6DD;
+    border: 1px solid white;
+    color: white;
+    align-self: center;
+    width: 30%;
+    margin-top: 30px;
+}
+

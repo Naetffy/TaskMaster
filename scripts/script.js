@@ -1,6 +1,6 @@
 //Agregar el mensaje de bienvenida con el nombre de usuario registrado
 function addUserName(){
-    const userJson = sessionStorage.getItem('user');
+    const userJson = localStorage.getItem('user');
     const user = JSON.parse(userJson);
     const newSpan = `<span>Welcome, ${user.name}</span>`;
     $("#user-container").prepend(newSpan);

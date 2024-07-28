@@ -176,6 +176,6 @@ userCalendar.addTask('07/27/2024', RECOHomework);
 userCalendar.addTask('07/27/2024', IAIAHomework);
 userCalendar.addTask('07/27/2024', IAIAHomework2);
 
-if (!sessionStorage.getItem('user')) sessionStorage.setItem('user', JSON.stringify(user));
+if (!localStorage.getItem('user')) localStorage.setItem('user', JSON.stringify(user));
 
 export { User, Calendary, Subject, Task, Status };

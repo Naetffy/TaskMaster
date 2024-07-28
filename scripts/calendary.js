@@ -1,7 +1,7 @@
 import { User } from '../api/lib/user.js';
 
 function loadUser(){
-    const userJson = sessionStorage.getItem('user');
+    const userJson = localStorage.getItem('user');
     const user = User.fromJson(JSON.parse(userJson));
     return function(){
         return user;
