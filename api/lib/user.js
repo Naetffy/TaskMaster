@@ -32,6 +32,9 @@ class User {
     getAllTasks(){
         return this.calendary.tasks;
     }
+    getTasksOfADay(date){
+        return this.calendary.tasks[date];
+    }
 
     deleteTask(date, task){
         this.calendary.deleteTask(date,task);
@@ -169,9 +172,9 @@ const RECOHomework = new Task('Homework1 RECO', "Realizar maquina virtual implem
 const IAIAHomework = new Task('Homework1 IAIA', "Entender una red neuronal no convulcional",IAIA);
 const IAIAHomework2 = new Task('Homework2 IAIA', "Entender una red neuronal convulcional",IAIA);
 
-userCalendar.addTask('2024-07-21', RECOHomework);
-userCalendar.addTask('2024-07-22', IAIAHomework);
-userCalendar.addTask('2024-07-23', IAIAHomework2);
+userCalendar.addTask('07/27/2024', RECOHomework);
+userCalendar.addTask('07/27/2024', IAIAHomework);
+userCalendar.addTask('07/27/2024', IAIAHomework2);
 
 if (!sessionStorage.getItem('user')) sessionStorage.setItem('user', JSON.stringify(user));
 

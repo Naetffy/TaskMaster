@@ -78,15 +78,14 @@ function addTask(){
         return;
     }
     let currentDate = new Date();
-    let dueDate = new Date(dueDateText.textContent);
+    let dueDate = new Date(dueDateText.text());
     currentDate.setHours(0,0,0,0);
     if(dueDate < currentDate){
         alert('The due date must be greater than the current date');
         return;
-    }
-    let date = dueDateText.textContent;
+    };
     let task = new Task(taskName, taskDescription, Status.PENDING, user.subjects[0]);
-    user.addTask(date, task);
+    user.addTask(dueDateText.text(), task);
     sessionStorage.setItem('user', JSON.stringify(user));
     loadTasks();
 }
