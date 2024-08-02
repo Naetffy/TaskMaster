@@ -39,6 +39,12 @@ class User {
     deleteTask(date, task){
         this.calendary.deleteTask(date,task);
     }
+
+    deleteSubject(index){
+        if(this.subjects[index]){
+            this.subjects.splice(index,1);
+        }
+    }
 }
 
 class Calendary {
@@ -76,12 +82,14 @@ class Subject {
         this.name = name;
         this.grades = [];
         this.finalGrade = 0;
+        this.passing = false;
     }
 
     static fromJson(json) {
         const subject = new Subject(json.name);
         subject.grades = json.grades;
         subject.finalGrade = json.finalGrade;
+        subject.passing = json.passing;
         return subject;
     }
 
@@ -95,11 +103,16 @@ class Subject {
         for (let i = 0; i < this.grades.length; i++) {
             finalGrade += this.grades[i][0] * this.grades[i][1];
         }
-        this.finalGrade = finalGrade;
+        this.finalGrade = finalGrade.toFixed(2);
+        this.passing = this.finalGrade >= 3.0;
     }
 
     getFinalGrade() {
         return this.finalGrade;
+    }
+
+    getGrades(){
+        return this.grades;
     }
 }
 
