@@ -27,7 +27,7 @@
     flex-direction: column;
     display: flex;
     margin-top: 30px;
-    margin-left: 25px;
+    margin-left: 80px;
     border-right: 5px dotted #5191ff;
     height: fit-content;
     position: sticky; /* Cambiado a fixed */
