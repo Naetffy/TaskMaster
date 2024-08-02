@@ -1,0 +1,35 @@
+<head>
+	<meta charset="iso-utf-8" />
+	<link rel="stylesheet" href="../styles/styles.css" />
+    <link rel="stylesheet" href="../styles/progress.css" />
+	<script type="text/javascript" src="../jquery-3.0.0.min.js"></script>
+	<script type="module" src="../api/lib/user.js"></script>
+	<title>TaskMaster</title>
+</head>
+
+<body>
+	<header id="navbar-placeholder">
+	</header>
+
+    <div id="tasks-graphic" class="canvas-container">
+        <div class="canvas-header">
+            <h1>Tasks progress</h1>
+            <p></p>
+        </div>
+        <canvas id="myCanvasTask"></canvas>
+    </div>
+    <div id="subjects-graphic" class="canvas-container">
+        <div class="canvas-header">
+            <h1>Subjects progress</h1>
+            <p>2 materias pasadas de 5</p>
+        </div>
+        <canvas id="myCanvasSubject" width="600" height="400"></canvas>
+    </div>
+
+
+
+	<script src="../scripts/script.js"></script>
+	<script type="module" src="../scripts/progress.js"></script>
+</body>
+	
+</html>

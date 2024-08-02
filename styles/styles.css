@@ -144,7 +144,6 @@ input::placeholder,textarea::placeholder {
     align-items: center;
     position: absolute;
     margin-right: auto;
-    margin-left: 1rem;
     margin-top: 0.5rem;
 }
 #nav-container a:hover{
@@ -156,7 +155,6 @@ input::placeholder,textarea::placeholder {
     font-size: 1rem;
     position: relative;
     margin-left: auto;
-    margin-right: 1rem;
     margin-top: 0.8rem;
 }
 #user-container span{

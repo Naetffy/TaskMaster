@@ -1,3 +1,6 @@
+#container{
+    display: flex;
+}
 #subject-name {
         border: none;
         border-bottom: 1px solid #65D6DD;
@@ -20,12 +23,17 @@
 }
 
 #add-subject{
-    width: calc(30% + 30px);
+    width: calc(30%);
     flex-direction: column;
     display: flex;
     margin-top: 30px;
     margin-left: 25px;
     border-right: 5px dotted #5191ff;
+    height: fit-content;
+    position: sticky; /* Cambiado a fixed */
+    top: 70px; /* Ajusta la distancia desde la parte superior del viewport */
+    left: 0; /* Ajusta la distancia desde el lado izquierdo del viewport */
+    z-index: 1000; /* Asegura que el elemento esté sobre otros elementos */
 }
 .input-size{
     width: 80px; 
@@ -73,5 +81,92 @@ button{
     align-self: center;
     width: 30%;
     margin-top: 30px;
+}
+#subjects-container{
+    width: calc(70%);
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 5%;
+    height: fit-content;
+    margin-top: 30px;
+    margin-left: 6%;
+}
+.subject-card{
+    background: radial-gradient(circle at top left, #13072e 30%, #3f2182 90%);
+    padding: 1rem;
+    border-radius: 25px;
+    margin-top: 2rem;
+    box-sizing: border-box;
+    align-items: center;
+    position: relative;
+    margin: 10px;
+    width: 270px; 
+    height: 200px; 
+    overflow: hidden; 
+    transition: transform 0.3s ease;
+    
+}
+.subject-card:hover {
+    transform: scale(1.08); 
+}
+.grade-container{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-weight: bold;
+}
+.square{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    
+}
+.subject-header{
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    
+}
+.subject-header h2{
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+}
+.subject-card p{
+    font-size: 16.7px;
+}
+.grade-container span{
+    font-size: 15.7px;
+}
+.isPassing .square{
+    background-color: #03fb32;
+}
+.notPassing .square{
+    background-color: #fb0303;
+}
+.edit-delete-buttons{
+    display: flex;
+    align-items: center; 
+    justify-content: end;
+    gap: 2%;
+}
+.delete-button,.edit-button {
+    background: none;
+    border: none;
+    color: rgba(101, 214, 221, 0.2);  /* Color inicial */
+    cursor: pointer;
+    font-size: 1.5em; /* Tamaño del icono */
+    padding: 0;
+    transition: color 0.2s ease-in-out; /* Transición de color suave */
+}
+
+.delete-button:hover,.edit-button:hover {
+    color: #65D6DD;
+    transform: scale(1.2); /* Aumenta ligeramente el tamaño */
+}
+.subject-card.fade-out {
+    opacity: 0; /* Desvanecimiento */
 }
 
