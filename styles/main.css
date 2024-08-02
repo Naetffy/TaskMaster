@@ -1,0 +1,75 @@
+.index-page {
+    display: flex;
+    align-items: center; 
+    gap: 2rem; 
+    padding: 1rem; 
+    margin-top: 2rem;
+    margin: auto 5rem auto 5rem;
+}
+.index-image{
+    width: 80%; 
+    max-width: 300px; 
+    height: auto;
+}
+.index-description h1{
+    font-size: 3rem;
+    border-bottom: 1.5px solid #65D6DD; 
+    padding-bottom: 0.5rem; 
+    margin-bottom: 1rem; 
+}
+.index-description p{
+    font-size: 1.5rem;
+}
+.index-services{
+    position: absolute;
+    width: calc(100%);
+    background-color: #65D6DD;
+    justify-content: center; 
+    align-items: center;
+    min-height: 60vh;
+}
+.services-description{
+    text-align: center;
+    color: #133034;
+}
+.services-description h2{
+    font-size: 2rem;
+}
+.services-description span{
+    font-size: 1.2rem;
+    display: block;
+}
+.presentation-card{
+    background-color: #133034;
+    padding: 1rem;
+    border: 3px solid #ddd; 
+    border-radius: 8px;
+    margin-top: 2rem;
+    height: 100%;
+    box-sizing: border-box;
+}
+.services {
+    display: flex;
+    justify-content: center; 
+    gap: 5rem; 
+    padding: 0;
+    margin: 0;
+    list-style: none; 
+}
+.services li {
+    width: 100%; 
+    max-width: 250px; 
+}
+
+.tool-image{
+    width: 40px;
+    height: 40px;
+    margin-top: 20px;
+}
+.card-header{
+    display: flex;
+    align-content: space-between;
+}
+p{
+    font-size: 18px;
+}
