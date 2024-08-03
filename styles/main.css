@@ -23,10 +23,10 @@
 .index-services{
     position: absolute;
     width: calc(100%);
-    background-color: #65D6DD;
     justify-content: center; 
     align-items: center;
     min-height: 60vh;
+    background: linear-gradient(to bottom right, #398B90, #65D6DD, #A6EEF1);
 }
 .services-description{
     text-align: center;
@@ -40,18 +40,29 @@
     display: block;
 }
 .presentation-card{
-    background-color: #133034;
-    padding: 1rem;
-    border: 3px solid #ddd; 
-    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    background-color: #317477;
+    border: 1px solid black; 
+    border-radius: 10px;
     margin-top: 2rem;
-    height: 100%;
+    height: 90%;
     box-sizing: border-box;
+    align-content: center;
+    align-items: center;
+    padding: 10px;
+    color: #21373a;
+}
+.presentation-card h2{
+    border-bottom: 1px solid #21373a; 
+    padding: 3px;
+    text-align: center;
+    font-size: 25px;
 }
 .services {
     display: flex;
     justify-content: center; 
-    gap: 5rem; 
+    gap: 8rem; 
     padding: 0;
     margin: 0;
     list-style: none; 
@@ -61,15 +72,25 @@
     max-width: 250px; 
 }
 
-.tool-image{
-    width: 40px;
-    height: 40px;
-    margin-top: 20px;
+.presentation-card img{
+    width: 55px;
+    height: 55px;
+    border-radius: 100%;
+    border: 1px solid #21373a;
 }
-.card-header{
-    display: flex;
-    align-content: space-between;
-}
+
 p{
     font-size: 18px;
+}
+.border-card {
+    border: 5px dotted #000; /* Cambia el color y el grosor según prefieras */
+    padding: 10px; /* Ajusta el espacio entre el borde y el contenido */
+    margin: 5px; /* Ajusta el espacio fuera del borde */
+}
+.presentation-card p{
+    text-align: center;
+}
+.presentation-card:hover{
+    border: 1px solid white; 
+
 }
