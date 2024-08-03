@@ -1,3 +1,10 @@
+.container-row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
 .div-calendary{
     display: flex;
 }
@@ -29,12 +36,12 @@
 #actual-task {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     height: 80%;
 }
 
 #task-list {
+    width: 100%;
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -43,12 +50,46 @@
     align-items: center;
 }
 
-#task-list li {
-    text-align: center;
-    margin-bottom: 20px;
-}
 
 h2, p{
     margin: 10px 10px;
 }
 
+.day-with-tasks{
+    background-color: rgb(41 63 28);
+}
+
+.task{
+    text-align: center;
+    border: 1px solid #65D6DD;
+    border-right: 0;
+    border-left: 0;
+    margin-top: 10px;
+    padding: 5px;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: #0a0a0a;
+    cursor: pointer;
+}
+
+.circle{
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    margin: auto 0 auto 10px;
+}
+.fc-event-main{
+    cursor:auto;
+}
+.fc-daygrid-day{
+    cursor: pointer;
+}
+.PENDING .circle{
+    background-color: #FB0303;
+}
+.IN_PROGRESS .circle{
+    background-color: #FB6B03;    
+}
+.COMPLETED .circle{
+    background-color: #03FB32;
+}
