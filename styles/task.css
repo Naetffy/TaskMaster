@@ -26,6 +26,25 @@ input::placeholder,textarea::placeholder {
     color: #c7c7c7; /* Color más oscuro para el placeholder */
 }
 
+.w-100{
+    width: 100%;
+}
+.w-95{
+    width: 95%;
+    margin: auto;
+}
+.w-90{
+    width: 90%;
+    margin: auto;
+}
+.w-80{
+    width: 80%;
+    margin: auto;
+}
+.w-70{
+    width: 70%;
+    margin: auto;
+}
 .w-60{
     width: 60%;
     margin: auto;
@@ -38,12 +57,14 @@ input::placeholder,textarea::placeholder {
     width: 40%;
     margin: auto;
 }
+.w-30{
+    width: 30%;
+    margin: auto;
+}
 .w-10{
     width: 10%;
 }
-.w-100{
-    width: 100%;
-}
+
 .h-5{
     height: 30px;
 }
@@ -149,3 +170,29 @@ h3{
 .edit-icon{
     height: 20px;
 }
+.COMPLETED:hover{
+    border: 1.5px solid #03FB32;
+}
+.IN_PROGRESS:hover{
+    border: 1.5px solid #FB6B03;
+}
+.PENDING:hover{
+    border: 1.5px solid #FB0303;
+}
+#calendarIcon{
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+#calendarIcon:hover {
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+}
+.flatpickr-calendar {
+    background-color: #acebf3;
+    border-radius: 5px;
+}
+
+.flatpickr-day {
+    color: #1a5862;
+}
+
+

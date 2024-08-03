@@ -4,12 +4,10 @@
 #subject-name {
         border: none;
         border-bottom: 1px solid #65D6DD;
-        background: none;
         outline: none;
         width: 92%;
         padding: 5px 0;
         font-size: 16px;
-        color: white;
 }
 .items{
     display: flex;
@@ -168,5 +166,21 @@ button{
 }
 .subject-card.fade-out {
     opacity: 0; /* Desvanecimiento */
+}
+#min-grade{
+    display:flex;
+    justify-content: space-between;
+    margin-left: 8%;
+    margin-right: 15%;
+    margin-top: 5%;
+}
+#input-min-size{
+    width: 175px; 
+    outline: none;
+    border: 1px solid #65D6DD;
+}
+input{
+    background:none;
+    color: white;
 }
 

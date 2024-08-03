@@ -93,18 +93,18 @@ class Subject {
         return subject;
     }
 
-    addGrade(grade, percentage) {
+    addGrade(grade, percentage,minimum) {
         this.grades.push([grade, percentage]);
-        this.calculateFinalGrade();
+        this.calculateFinalGrade(minimum);
     }
 
-    calculateFinalGrade() {
+    calculateFinalGrade(minimum) {
         let finalGrade = 0;
         for (let i = 0; i < this.grades.length; i++) {
             finalGrade += this.grades[i][0] * this.grades[i][1];
         }
         this.finalGrade = finalGrade.toFixed(2);
-        this.passing = this.finalGrade >= 3.0;
+        this.passing = this.finalGrade >= minimum;
     }
 
     getFinalGrade() {
