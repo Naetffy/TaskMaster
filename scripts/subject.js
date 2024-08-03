@@ -35,6 +35,7 @@ function addGrade(){
 function addSubject() {
     let subjectTitle = $("#subject-name").val();
     let values = $('.subject-information').children();
+    let subjectMinGrade = parseFloat($('#input-min-size').val());
     if (!subjectTitle) {
         alert("Please enter a subject name.");
         return;
@@ -43,7 +44,10 @@ function addSubject() {
         alert("The title is too long.");
         return;
     }
-
+    if(isNaN(subjectMinGrade)){
+        alert("Please enter a minimum grade.");
+        return;
+    }
     let subject = new Subject(subjectTitle);
     let totalPercentage = 0;
 
@@ -61,7 +65,7 @@ function addSubject() {
             return;
         }
 
-        subject.addGrade(grade, percentage);
+        subject.addGrade(grade, percentage,subjectMinGrade);
     }
 
     user.addSubject(subject);
