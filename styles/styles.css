@@ -81,3 +81,9 @@ body{
     font-size: 1.2rem;
 }
 
+#user-img{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+}

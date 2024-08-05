@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="iso-utf-8" />
+	<link rel="stylesheet" href="" />
+	<link rel="stylesheet" href="../styles/styles.css" />
+	<script type="text/javascript" src="../jquery-3.0.0.min.js"></script>
+    <script type="text/javascript" src="../scripts/script.js"></script>
+	<link rel="stylesheet" href="../styles/user.css">
+	<title>User</title>
+
+<body>
+	<div id="navbar-placeholder"></div>
+    <div class="container w-40">
+        <div class="container-row">
+            <div class="w-40 container" style="position: relative;">
+                <div id="user-photo">
+                    <img src="../images/user.png" alt="User photo" id="user-photo-img"/>
+                </div>
+                <button id="edit-photo-btn">
+                    <img src="../images/editar.png" alt="Edit" />
+                </button>
+                <input type="file" id="photo-input" accept="image/*" style="display: none;" />
+            </div>
+            <div class="w-60" style="margin-left: 20px;">
+                <h3>User profile</h3>
+                <p>Name: <span id="user-name"></span></p>
+                <p>Number of subjects: <span id="number-of-subjects"></span></p>
+                <p>Number of tasks: <span id="number-of-tasks"></span></p>
+            </div>
+        </div>
+    </div>
+	<script type="module" src="../scripts/user.js"></script>
+</body>
+
+</html>
