@@ -25,7 +25,7 @@
     flex-direction: column;
     display: flex;
     margin-top: 30px;
-    margin-left: 80px;
+    margin-left: 6%;
     border-right: 5px dotted #5191ff;
     height: fit-content;
     position: sticky; /* Cambiado a fixed */
@@ -84,10 +84,10 @@ button{
     width: calc(70%);
     display: flex;
     flex-wrap: wrap; 
-    gap: 5%;
+    gap: 8%;
     height: fit-content;
     margin-top: 30px;
-    margin-left: 6%;
+    margin-left: 9%;
 }
 .subject-card{
     background: radial-gradient(circle at top left, #13072e 30%, #3f2182 90%);
