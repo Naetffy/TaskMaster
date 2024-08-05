@@ -8,22 +8,17 @@ function addUserName(){
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    if (!sessionStorage.getItem('navbar')) {
-        fetch('../components/navbar.html')
+    fetch('../components/navbar.html')
             .then(response => response.text())
             .then(data => {
-                sessionStorage.setItem('navbar', data);
                 document.getElementById('navbar-placeholder').innerHTML = data;
                 addUserName();
                 highlightActiveNav();
+                if (localStorage.getItem('userPhoto')) {
+                    $('#user-img').attr('src', localStorage.getItem('userPhoto'));
+                }
             })
             .catch(error => console.error('Error loading the navbar:', error));
-    }
-    else{
-        $("#navbar-placeholder").html(sessionStorage.getItem('navbar'));
-        addUserName();
-        highlightActiveNav();
-    }
 });
 
 function highlightActiveNav() {

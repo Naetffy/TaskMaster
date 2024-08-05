@@ -45,6 +45,16 @@ class User {
             this.subjects.splice(index,1);
         }
     }
+    getNumberOfSubjects(){
+        return this.subjects.length;
+    }
+    getNumberOfTasks(){
+        let numberOfTasks = 0;
+        for(let date in this.calendary.tasks){
+            numberOfTasks += this.calendary.tasks[date].length;
+        }
+        return numberOfTasks;
+    }
 }
 
 class Calendary {
