@@ -55,6 +55,9 @@ class User {
         }
         return numberOfTasks;
     }
+    getSelectedSubject(index){
+        return this.subjects[index];
+    }
 }
 
 class Calendary {
@@ -88,11 +91,12 @@ class Calendary {
 }
 
 class Subject {
-    constructor(name) {
+    constructor(name,minimum) {
         this.name = name;
         this.grades = [];
         this.finalGrade = 0;
         this.passing = false;
+        this.minimum = minimum;
     }
 
     static fromJson(json) {
@@ -100,21 +104,22 @@ class Subject {
         subject.grades = json.grades;
         subject.finalGrade = json.finalGrade;
         subject.passing = json.passing;
+        subject.minimum = json.minimum;
         return subject;
     }
 
-    addGrade(grade, percentage,minimum) {
+    addGrade(grade, percentage) {
         this.grades.push([grade, percentage]);
-        this.calculateFinalGrade(minimum);
+        this.calculateFinalGrade();
     }
 
-    calculateFinalGrade(minimum) {
+    calculateFinalGrade() {
         let finalGrade = 0;
         for (let i = 0; i < this.grades.length; i++) {
             finalGrade += this.grades[i][0] * this.grades[i][1];
         }
         this.finalGrade = finalGrade.toFixed(2);
-        this.passing = this.finalGrade >= minimum;
+        this.passing = this.finalGrade >= this.minimum;
     }
 
     getFinalGrade() {

@@ -48,7 +48,11 @@ function addSubject() {
         alert("Please enter a minimum grade.");
         return;
     }
-    let subject = new Subject(subjectTitle);
+    if(subjectMinGrade<0){
+        alert("Please enter valid minimum grade value.");
+        return;
+    }
+    let subject = new Subject(subjectTitle,subjectMinGrade);
     let totalPercentage = 0;
 
     for (let i = 0; i < values.length; i += 2) {
@@ -65,14 +69,14 @@ function addSubject() {
             return;
         }
 
-        subject.addGrade(grade, percentage,subjectMinGrade);
+        subject.addGrade(grade, percentage);
     }
 
     user.addSubject(subject);
     localStorage.setItem('user', JSON.stringify(user));
     loadSubjects();
     $('#input-container').children().slice(1).remove();
-    $('#add-subject').find('input').val('');
+    $('#add-subject').find('input').slice(0,-1).val('');
 
 }
 
@@ -125,7 +129,8 @@ function deleteSubject(index) {
 *@param button elem of the selected subject
 */
 function editSubject(index,button){
-    let grades = user.getSubjects()[index].getGrades();
+    const subject = user.getSelectedSubject(index);
+    const grades = subject.getGrades();
     const item = button.parentElement.parentElement;
     const title = item.querySelector('.subject-header').querySelector('h2').textContent;
     const subjectTitle = document.getElementById('subject-name');
@@ -137,6 +142,7 @@ function editSubject(index,button){
         inputGrade[0].value = grades[i][0];
         inputGrade[1].value = grades[i][1];
     }
+    document.getElementById('input-min-size').value = subject.minimum;
     deleteSubject(index);
 }
 
