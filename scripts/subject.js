@@ -74,6 +74,7 @@ function addSubject() {
 
     user.addSubject(subject);
     localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem(`user${localStorage.getItem('currentUser')}`,JSON.stringify(user));
     loadSubjects();
     $('#input-container').children().slice(1).remove();
     $('#add-subject').find('input').slice(0,-1).val('');
@@ -120,6 +121,7 @@ function deleteSubject(index) {
     cardElement.classList.add('fade-out');
     user.deleteSubject(index);
     localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem(`user${localStorage.getItem('currentUser')}`,JSON.stringify(user));
     loadSubjects();
 }
 

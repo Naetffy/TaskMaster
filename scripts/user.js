@@ -8,10 +8,17 @@ function loadUser(){
     }
 }
 const user = loadUser()();
-
-document.addEventListener("DOMContentLoaded", function() {
-    if (localStorage.getItem('userPhoto')) {
-        $('#user-photo-img').attr('src', localStorage.getItem('userPhoto'));
+if (document.readyState !== 'loading') {
+    myInitCode();
+} else {
+    document.addEventListener('DOMContentLoaded', function () {
+        myInitCode();
+    });
+}
+function myInitCode() {
+    let actualIndex = localStorage.getItem('currentUser');
+    if (localStorage.getItem(`userPhoto${actualIndex}`)) {
+        $('#user-photo-img').attr('src', localStorage.getItem(`userPhoto${actualIndex}`));
     }
     let userName = $("#user-name");
     userName.html(user.name);
@@ -28,10 +35,18 @@ document.addEventListener("DOMContentLoaded", function() {
         if (file) {
             const reader = new FileReader();
             reader.onload = function(e) {
-                localStorage.setItem('userPhoto', e.target.result);
+                let actualIndex = localStorage.getItem('currentUser');
+                localStorage.setItem(`userPhoto${actualIndex}`, e.target.result);
                 $('#user-photo-img').attr('src', e.target.result);
             };
             reader.readAsDataURL(file);
         }
     });
-});
+
+    $('#exit-btn').on('click', function() {
+        console.log('exit');
+        localStorage.removeItem('user');
+        localStorage.removeItem('currentUser');
+        window.location.href = "login.html";
+    });
+};
