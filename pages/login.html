@@ -1,0 +1,52 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+	<meta charset="iso-utf-8" />
+	<link rel="stylesheet" href="../styles/login.css" />
+	<script type="text/javascript" src="../jquery-3.0.0.min.js"></script>
+	<title>TaskMaster</title>
+</head>
+<body>
+    <div id="main-container">
+        <div class="container w-50" id="display-left">
+            <div class="logo-app display-row">
+                <img src="../images/logo2.jpeg" alt="logo" class="logo"/>
+                <h2 style="margin-left: 10px;">TaskMaster</h2>
+            </div>
+            <div class="display-col centered" id="info">
+                <div class="display-col centered w-50">
+                    <img src="https://media-public.canva.com/hhr5c/MAFS60hhr5c/1/t.png">
+                    <h1 style="text-align: center;">Welcome to TaskMaster</h1> 
+                </div>
+                <p style="text-align: center; width: 80%;">Manage your daily tasks, and keep track of your subjects. Keep your projects in order and achieve your goals with ease.</p>
+            </div>
+        </div>
+        <div class="container w-50" id="display-right">
+            <div class="display-col" id="main-login">
+                <h1 style="font-weight: bolder;">Login in your account</h1>
+                <p style="font-weight: lighter;">Enter your credentials to continue</p>
+                <form id="login-form" class="display-col" style="display: none;">
+                    <div class="display-col">
+                        <label for="email">Email:</label>
+                        <input autocomplete="email" type="text" id="email" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="display-col">
+                        <label for="password">Password:</label>
+                        <div class="password-wrapper">
+                            <input autocomplete="current-password" type="password" id="password" name="password" placeholder="Password" required>
+                            <span id="toggle-password" class="toggle-password"></span>
+                        </div>
+                    </div>                    
+                    <p style="text-align: right;"><a href="forgot-password.html">Forgot password?</a></p>
+                    <button type="submit" id="login-button">Login</button>
+                    <p id="error-message"></p>
+                </form>
+                <p style="text-align: right;">Don't have an account? <a href="register.html">Register</a></p>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="../api/lib/user.js"></script>
+	<script type="module" src="../scripts/login.js"></script>
+</body>
+	
+</html>

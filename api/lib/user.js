@@ -6,15 +6,26 @@ class User {
         this.subjects = [];
         this.calendary = calendary;
     }
+
     static fromJson(json) {
         let calendary = Calendary.fromJson(json.calendary);
         const user = new User(json.name, json.email, calendary);
+        user.password = json.password;
         user.subjects = [];
         for (let i = 0; i < json.subjects.length; i++) {
             user.subjects.push(Subject.fromJson(json.subjects[i]));
         }
         return user;
     
+    }
+
+    async setPassword(password) {
+        this.password = await hashPassword(password);
+    }
+    
+    async validateEntry(email, password) {
+        const hashedPassword = await hashPassword(password); // Espera a que se resuelva el hash
+        return this.email === email && this.password === hashedPassword;
     }
 
     addSubject(subject) {
@@ -34,6 +45,18 @@ class User {
     }
     getTasksOfADay(date){
         return this.calendary.tasks[date];
+    }
+
+    getPendingTasks(){
+        return this.calendary.getPendingTasks();
+    }
+
+    getInProgressTasks(){
+        return this.calendary.getInProgressTasks();
+    }
+
+    getCompletedTasks(){
+        return this.calendary.getCompletedTasks();
     }
 
     deleteTask(date, task){
@@ -60,6 +83,14 @@ class User {
     }
 }
 
+async function hashPassword(password) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+    return hashHex;
+}
 class Calendary {
     constructor(user) {
         this.user = user;
@@ -76,10 +107,47 @@ class Calendary {
         return calendary;
     }
 
+    getPendingTasks(){
+        let pendingTasks = [];
+        for(let date in this.tasks){
+            for(let i = 0; i < this.tasks[date].length; i++){
+                if(this.tasks[date][i].status === Status.PENDING){
+                    pendingTasks.push(this.tasks[date][i]);
+                }
+            }
+        }
+        return pendingTasks;
+    }
+
+    getInProgressTasks(){
+        let inProgressTasks = [];
+        for(let date in this.tasks){
+            for(let i = 0; i < this.tasks[date].length; i++){
+                if(this.tasks[date][i].status === Status.IN_PROGRESS){
+                    inProgressTasks.push(this.tasks[date][i]);
+                }
+            }
+        }
+        return inProgressTasks;
+    }
+
+    getCompletedTasks(){
+        let completedTasks = [];
+        for(let date in this.tasks){
+            for(let i = 0; i < this.tasks[date].length; i++){
+                if(this.tasks[date][i].status === Status.COMPLETED){
+                    completedTasks.push(this.tasks[date][i]);
+                }
+            }
+        }
+        return completedTasks;
+    }
+
     addTask(date, task) {
         if (!this.tasks[date]) {
             this.tasks[date] = [];
         }
+        task.setDate(date);
         this.tasks[date].push(task);
     }
 
@@ -138,6 +206,7 @@ class Task {
         this.subject = subject;
         this.status = Status.PENDING;
         this.grade = null;
+        this.date = null;
     }
 
     static fromJson(json) {
@@ -145,6 +214,7 @@ class Task {
         const task = new Task(json.name, json.description, subject);
         task.status = json.status;
         task.grade = json.grade;
+        task.date = json.date;
         return task;
     }
 
@@ -159,6 +229,11 @@ class Task {
     setGrade(grade) {
         this.grade = grade;
     }
+
+    setDate(date){
+        this.date = date;
+    }
+
 }
 
 class Status {
@@ -184,6 +259,7 @@ class Status {
 // Crear instancias de las clases
 const userCalendar = new Calendary();
 const user = new User('John Doe', 'johndoe@example.com', userCalendar);
+await user.setPassword("Contraseña123");
 
 // Añadir materias
 const RECO = new Subject('Redes computacionales');
@@ -204,6 +280,9 @@ userCalendar.addTask('07/27/2024', RECOHomework);
 userCalendar.addTask('07/27/2024', IAIAHomework);
 userCalendar.addTask('07/27/2024', IAIAHomework2);
 
-if (!localStorage.getItem('user')) localStorage.setItem('user', JSON.stringify(user));
+if (!localStorage.getItem('user1')) {
+    localStorage.setItem('numUsers', 1);
+    localStorage.setItem('user1', JSON.stringify(user));
+}
 
-export { User, Calendary, Subject, Task, Status };
+export { User, Calendary, Subject, Task, Status, hashPassword};

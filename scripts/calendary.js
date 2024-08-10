@@ -8,8 +8,14 @@ function loadUser() {
     }
 }
 const user = loadUser()();
-
-document.addEventListener('DOMContentLoaded', function() {
+if (document.readyState !== 'loading') {
+    myInitCode();
+} else {
+    document.addEventListener('DOMContentLoaded', function () {
+        myInitCode();
+    });
+}
+function myInitCode() {
     var calendarEl = $('#calendar')[0];
 
     var daysWithEvents = [];
@@ -116,4 +122,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-});
+};
