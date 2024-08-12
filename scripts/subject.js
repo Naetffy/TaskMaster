@@ -64,8 +64,9 @@ function addSubject() {
         }
 
         totalPercentage += percentage;
-        if (totalPercentage > 1) {
+        if (totalPercentage.toFixed(1) > 1) {
             alert("The total percentage exceeds 1. Please enter valid percentages.");
+            console.log(totalPercentage);
             return;
         }
 
