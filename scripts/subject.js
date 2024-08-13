@@ -35,7 +35,14 @@ function addGrade(){
 function addSubject() {
     let subjectTitle = $("#subject-name").val();
     let values = $('.subject-information').children();
-    let subjectMinGrade = parseFloat($('#input-min-size').val());
+    let subjectMinGrade = parseFloat($('#min-grade').val());
+    let subjectCredits = parseFloat($('#credits').val());
+    if(user.checkExistingSubject(subjectTitle)){
+        const result = confirm("A subject with that name already exists. Do you want to continue?");
+        if(!result){
+            return;
+        }
+    }
     if (!subjectTitle) {
         alert("Please enter a subject name.");
         return;
@@ -52,7 +59,11 @@ function addSubject() {
         alert("Please enter valid minimum grade value.");
         return;
     }
-    let subject = new Subject(subjectTitle,subjectMinGrade);
+    if(isNaN(subjectCredits) || subjectCredits < 0){
+        alert("Enter a valid number of credits");
+        return;
+    }
+    let subject = new Subject(subjectTitle,subjectMinGrade,subjectCredits);
     let totalPercentage = 0;
 
     for (let i = 0; i < values.length; i += 2) {
@@ -78,8 +89,8 @@ function addSubject() {
     localStorage.setItem(`user${localStorage.getItem('currentUser')}`,JSON.stringify(user));
     loadSubjects();
     $('#input-container').children().slice(1).remove();
-    $('#add-subject').find('input').slice(0,-1).val('');
-
+    $('#add-subject').find('input').slice(0,-2).val('');
+    $('#credits').val('');
 }
 
 
@@ -110,7 +121,7 @@ function loadSubjects(){
             </div>`;
     }
     document.getElementById('subjects-container').innerHTML = subjectHtml;
-    console.log(subjects);
+    getGradeSemester();
 }
 
 /*
@@ -145,8 +156,17 @@ function editSubject(index,button){
         inputGrade[0].value = grades[i][0];
         inputGrade[1].value = grades[i][1];
     }
-    document.getElementById('input-min-size').value = subject.minimum;
+    document.getElementById('min-grade').value = subject.minimum;
+    document.getElementById('credits').value = subject.getNumberOfCredits();
     deleteSubject(index);
+}
+/*
+*Change the final semester grade
+*/
+function getGradeSemester(){
+    const grade = user.getGradeSemester();
+    const finalGrade = isNaN(grade) ? "0.0" : grade;
+    document.getElementById('semester').querySelector('span').textContent = finalGrade;
 }
 
 

@@ -29,14 +29,25 @@
                 </div>
             </div>
             <button id="add-grade-button" onclick="addGrade()"><b>+ Add grade</b></button>
-            <div id="min-grade">
+            <div class="min-credits">
                 <label><b>Minimum grade</b></label>
-                <input type="text" id="input-min-size">
+                <input type="text" class="input-min-size" id="min-grade">
+            </div>
+            <div class="min-credits">
+                <label><b>Credits</b></label>
+                <input type="text" class="input-min-size" id="credits">
             </div>
             <button id="add-subject-button" onclick="addSubject()"><b>Add</b></button>    
         </div>
         <div id="subjects-container">
         </div>
+    </div>
+    <div id="semester">
+        <div>
+            <i class="fas fa-book"></i>
+            <h3>Final semester grade</h3>
+        </div>
+        <span><b>0</b></span>
     </div>
 
 	
