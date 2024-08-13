@@ -167,14 +167,14 @@ button{
 .subject-card.fade-out {
     opacity: 0; /* Desvanecimiento */
 }
-#min-grade{
+.min-credits{
     display:flex;
     justify-content: space-between;
     margin-left: 8%;
     margin-right: 15%;
     margin-top: 5%;
 }
-#input-min-size{
+.input-min-size{
     width: 175px; 
     outline: none;
     border: 1px solid #65D6DD;
@@ -183,4 +183,34 @@ input{
     background:none;
     color: white;
 }
+
+#semester{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 35px;  
+    line-height: 50px; 
+    box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1); 
+    display: flex;
+    align-items: center;
+    color: #133034;
+    justify-content: center;
+    gap: 75%;
+    background: linear-gradient(to bottom right, #398B90, #65D6DD, #A6EEF1);
+}
+#semester i {
+    font-size: 25px; 
+    color:#133034;
+}
+#semester div {
+    display:flex;
+    align-items: center;
+    gap: 8px;
+}
+#semester span{
+    font-size: 20px;
+}
+
+
 

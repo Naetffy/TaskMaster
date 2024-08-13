@@ -45,6 +45,7 @@ function loadTasks() {
         }
         else {
             let date = task.date;
+            let id = task.id;
             const statusOptions = `
             ${0 !== task.status ? '<option value="0">Pending</option>' : ''}
             ${1 !== task.status ? '<option value="1">In progress</option>' : ''}
@@ -55,8 +56,8 @@ function loadTasks() {
                     <div class="task-header">
                         <div class="circle"></div>
                         <h4>${task.name}</h4>
-                        <img class = "task-icon edit-icon" src="../images/editar.png" src="edit icon" onclick="editTask('${date}', ${i},this)"/>
-                        <button class="close-button task-icon" type="button" onclick="removeTask('${date}', ${i},this)">X</button>
+                        <img class = "task-icon edit-icon" src="../images/editar.png" src="edit icon" onclick="editTask('${date}', ${id},this)"/>
+                        <button class="close-button task-icon" type="button" onclick="removeTask('${date}', ${id},this)">X</button>
                     </div>    
                     <p>${task.description}</p>
                     <p>status: ${Status.toString(task.status)} 
@@ -117,6 +118,10 @@ function addTask() {
         alert('The due date must be greater than the current date');
         return;
     };
+    if(user.checkExistingTask(dueDateText.text(),taskName)){
+        alert('A task with that name already exist on this date.');
+        return;
+    }
     let task = new Task(taskName, taskDescription, Status.PENDING, user.subjects[0]);
     user.addTask(dueDateText.text(), task);
     localStorage.setItem('user', JSON.stringify(user));
@@ -129,7 +134,7 @@ function addTask() {
 *@param button the button element of the selected task
 */
 function removeTask(taskDate, selectedTask, button) {
-    user.deleteTask(taskDate, selectedTask);
+    user.deleteTask(taskDate,selectedTask);
     const elementToRemove = button.parentElement.parentElement;
     elementToRemove.remove();
     localStorage.setItem('user', JSON.stringify(user));

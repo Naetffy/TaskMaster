@@ -81,6 +81,31 @@ class User {
     getSelectedSubject(index){
         return this.subjects[index];
     }
+    getGradeSemester(){
+        let total = 0;
+        let finalGrade = 0;
+        for(let i=0; i<this.subjects.length; i++){
+            const credits = this.subjects[i].getNumberOfCredits();
+            const grade = this.subjects[i].getFinalGrade();
+            finalGrade += credits*grade;
+            total += credits;
+        }
+        return (finalGrade/total).toFixed(2);
+    }
+    checkExistingSubject(name){
+        let flag =  this.subjects.some(subject => subject.name === name);
+        console.log(flag);
+        return flag;
+    }
+    getIndexOfTask(){
+        return this.calendary.orderOfTasks;
+    }
+    checkExistingTask(date,name){
+        const currentTasks = this.getTasksOfADay(date);
+        if(currentTasks){
+            return currentTasks.some(task => task.name === name); 
+        }
+    }
 }
 
 async function hashPassword(password) {
@@ -149,22 +174,31 @@ class Calendary {
         }
         task.setDate(date);
         this.tasks[date].push(task);
+        this.setIdTasks(date);
     }
 
     deleteTask(date,index){
         if(this.tasks[date]){
             this.tasks[date].splice(index,1);
+            this.setIdTasks(date);
+        }
+    }
+
+    setIdTasks(date){
+        for(let i = 0; i < this.tasks[date].length; i++){
+            this.tasks[date][i].setId(i);
         }
     }
 }
 
 class Subject {
-    constructor(name,minimum) {
+    constructor(name,minimum,credits) {
         this.name = name;
         this.grades = [];
         this.finalGrade = 0;
         this.passing = false;
         this.minimum = minimum;
+        this.credits = credits;
     }
 
     static fromJson(json) {
@@ -173,6 +207,7 @@ class Subject {
         subject.finalGrade = json.finalGrade;
         subject.passing = json.passing;
         subject.minimum = json.minimum;
+        subject.credits = json.credits;
         return subject;
     }
 
@@ -197,6 +232,9 @@ class Subject {
     getGrades(){
         return this.grades;
     }
+    getNumberOfCredits(){
+        return this.credits;
+    }
 }
 
 class Task {
@@ -207,6 +245,7 @@ class Task {
         this.status = Status.PENDING;
         this.grade = null;
         this.date = null;
+        this.id = null;
     }
 
     static fromJson(json) {
@@ -215,6 +254,7 @@ class Task {
         task.status = json.status;
         task.grade = json.grade;
         task.date = json.date;
+        task.id = json.id;
         return task;
     }
 
@@ -232,6 +272,10 @@ class Task {
 
     setDate(date){
         this.date = date;
+    }
+
+    setId(id){
+        this.id = id;
     }
 
 }
@@ -262,8 +306,8 @@ const user = new User('John Doe', 'johndoe@example.com', userCalendar);
 await user.setPassword("Contraseña123");
 
 // Añadir materias
-const RECO = new Subject('Redes computacionales');
-const IAIA = new Subject('Intro. a la inteligencia artificial');
+const RECO = new Subject('Redes computacionales',30);
+const IAIA = new Subject('Intro. a la inteligencia artificial',30);
 
 user.addSubject(RECO);
 user.addSubject(IAIA);
